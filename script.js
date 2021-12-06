@@ -23,14 +23,17 @@ function main() {
     imageElement.style.width = size + '%';
     setInterval(moveBird, 20);
     setInterval(updateSpeed, 1000);
-    if(speed.x < 0) {
-        
-    }
+  
 }
 
 function updateSpeed() {
     speed.x = -0.5 + Math.random ();
-    speed.y = -0.5 + Math.random ();
+    speed.y = -0.5 + Math.random ();  
+    if(speed.x < 0) {
+        imageElement.style.transform = 'scaleX(-1)';
+    } else {
+        imageElement.style.transform = 'scaleX(1)';
+    }
 }
 
 
