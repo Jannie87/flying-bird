@@ -7,7 +7,11 @@ let imageElement;
 
 //state
 const size = 20;
-const speed = 0.4;
+const speed =  {
+    x:0.4,
+    y:0.2,
+}
+
 const position = {
     top: 0,
     left:-size,
@@ -18,13 +22,35 @@ function main() {
     imageElement = document.querySelector('img');
     imageElement.style.width = size + '%';
     setInterval(moveBird, 20);
+    setInterval(updateSpeed, 1000);
+    if(speed.x < 0) {
+        
+    }
+}
+
+function updateSpeed() {
+    speed.x = -0.5 + Math.random ();
+    speed.y = -0.5 + Math.random ();
 }
 
 
 function moveBird() {
-    position.left += speed;
+
+    //horizontellt x-led
+    position.left += speed.x;
     if (position.left > 100) {
         position.left = -size;
+    } else if (position.left< -size) {
+        position.left = 100;
     }
     imageElement.style.left = position.left + '%';
+//Vertikalt y-led
+    position.top += speed.y;
+    if (position.top > 100) {
+        position.top = -size;
+    }else if (position.top< -size) {
+        position.top = 100;
+    }
+    imageElement.style.top = position.top + '%';
+
 }
